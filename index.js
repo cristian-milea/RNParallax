@@ -195,17 +195,27 @@ class RNParallax extends Component {
     const imageScale = this.getImageScale();
 
     return (
-      <Animated.Image
-        style={[
-          styles.backgroundImage,
-          {
-            height: this.getHeaderMaxHeight(),
-            opacity: imageOpacity,
-            transform: [{ translateY: imageTranslate }, { scale: imageScale }],
-          },
-        ]}
-        source={backgroundImage}
-      />
+      <>
+        <Animated.Image
+          style={[
+            styles.backgroundImage,
+            {
+              height: this.getHeaderMaxHeight(),
+              opacity: imageOpacity,
+              transform: [{ translateY: imageTranslate }, { scale: imageScale }],
+            },
+          ]}
+          source={backgroundImage}
+        />
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          right: 0,
+          left: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)'
+        }}/>
+      </>
     );
   }
 
@@ -360,6 +370,7 @@ RNParallax.propTypes = {
   renderNavBar: PropTypes.func,
   renderContent: PropTypes.func.isRequired,
   backgroundColor: PropTypes.string,
+  imageOverlayColor: PropTypes.string,
   backgroundImage: PropTypes.any,
   navbarColor: PropTypes.string,
   title: PropTypes.any,
@@ -384,6 +395,7 @@ RNParallax.defaultProps = {
   renderNavBar: () => <View />,
   navbarColor: DEFAULT_NAVBAR_COLOR,
   backgroundColor: DEFAULT_BACKGROUND_COLOR,
+  imageOverlayColor: 'rgba(0,0,0,0.0)',
   backgroundImage: null,
   title: null,
   titleStyle: styles.headerText,
